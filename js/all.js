@@ -38,8 +38,8 @@ function combineProductHTMLItem(item) {
               alt="">
           <a href="#" class="addCardBtn" data-id="${item.id}">加入購物車</a>
           <h3>${item.title}</h3>
-          <del class="originPrice">NT$${item.origin_price}</del>
-          <p class="nowPrice">NT$${item.price}</p>
+          <del class="originPrice">NT$${toThousands(item.origin_price)}</del>
+          <p class="nowPrice">NT$${toThousands(item.price)}</p>
           </li>`;
 }
 
@@ -112,7 +112,7 @@ function getCartList() {
     )
     .then(function (response) {
       cartData = response.data.carts;
-      cartTotal.textContent = response.data.finalTotal;
+      cartTotal.textContent = toThousands(response.data.finalTotal);
       let str = "";
       cartData.forEach(function (item) {
         str += `<tr>
@@ -122,9 +122,9 @@ function getCartList() {
                           <p>${item.product.title}</p>
                       </div>
                   </td>
-                  <td>NT$${item.product.price}</td>
+                  <td>NT$${toThousands(item.product.price)}</td>
                   <td>${item.quantity}</td>
-                  <td>NT$${item.product.price * item.quantity}</td>
+                  <td>NT$${toThousands(item.product.price * item.quantity)}</td>
                   <td class="discardBtn">
                       <a href="#" class="material-icons" data-id=${item.id}>
                           clear
@@ -190,7 +190,13 @@ orderInfoBtn.addEventListener("click", function (e) {
     customerAddress == "" ||
     customerTradeWay == ""
   ) {
-    alert("請輸入訂單資訊");
+    alert("請勿輸入空字串");
+    return;
+  }
+
+  if (validateEmail(customerEmail) == false) {
+    alert("請填寫正確的Email");
+    return;
   }
 
   axios
@@ -218,3 +224,23 @@ orderInfoBtn.addEventListener("click", function (e) {
       getCartList();
     });
 });
+
+// utility js
+// 千分位
+function toThousands(x) {
+  let parts = x.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
+}
+
+// Email 驗證
+function validateEmail(mail) {
+  if (
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+      mail
+    )
+  ) {
+    return true;
+  }
+  return false;
+}

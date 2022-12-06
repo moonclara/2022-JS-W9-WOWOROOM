@@ -26,9 +26,15 @@
             </ul>
         </div>
     </nav>
-    <section class="wrap">
-        <h2 class="section-title">全品項營收比重</h2>
-        <div id="chart"></div>
+    <section class="wrap" style="display: flex;">
+        <div style="width: 50%;">
+            <h2 class="section-title">全產品類別營收比重</h2>
+            <div id="chartCategory"></div>
+        </div>
+        <div style="width: 50%;">
+            <h2 class="section-title">全品項營收比重</h2>
+            <div id="chartItem"></div>
+        </div>
     </section>
     <section class="wrap orderPage-list">
         <a href="#" class="discardAllBtn">清除全部訂單</a>
@@ -40,72 +46,14 @@
                         <th width="10%">聯絡人</th>
                         <th width="10%">聯絡地址</th>
                         <th width="10%">電子郵件</th>
-                        <th width="20%">訂單品項</th>
-                        <th width="20%">訂單日期</th>
+                        <th width="30%">訂單品項</th>
+                        <th width="10%">訂單日期</th>
                         <th width="10%">訂單狀態</th>
                         <th width="10%">操作</th>
                     </tr>
                 </thead>
                 <tbody class="js-orderList">
-                    <!-- <tr>
-                        <td>10088377474</td>
-                        <td>
-                            <p>小杰</p>
-                            <p>0912345678</p>
-                        </td>
-                        <td>高雄市前鎮區六合路183巷66號</td>
-                        <td>cccexample@gmail.com</td>
-                        <td>
-                            <p>Louvre 雙人床架</p>
-                        </td>
-                        <td>2021/03/08</td>
-                        <td class="orderStatus">
-                            <a href="#">未處理</a>
-                        </td>
-                        <td>
-                            <input type="button" class="delSingleOrder-Btn" value="刪除">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10088377475</td>
-                        <td>
-                            <p>麥特</p>
-                            <p>0912345678</p>
-                        </td>
-                        <td>桃園市平鎮區榮耀路13巷90號</td>
-                        <td>wwexample@gmail.com</td>
-                        <td>
-                            <p>Louvre 雙人床架</p>
-                        </td>
-                        <td>2021/03/08</td>
-                        <td class="orderStatus">
-                            <a href="#">已處理</a>
-                        </td>
-                        <td>
-                            <input type="button" class="delSingleOrder-Btn" value="刪除">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10088377581</td>
-                        <td>
-                            <p>歐爾</p>
-                            <p>0912345678</p>
-                        </td>
-                        <td>高雄市苓雅區武廟路22巷188號</td>
-                        <td>68example@gmail.com</td>
-                        <td>
-                            <p>Louvre 雙人床架</p>
-                        </td>
-                        <td>2021/03/08</td>
-                        <td class="orderStatus">
-                            <a href="#">未處理</a>
-                        </td>
-                        <td>
-                            <input type="button" class="delSingleOrder-Btn" value="刪除">
-                        </td>
-                    </tr> -->
                 </tbody>
-
             </table>
         </div>
     </section>
@@ -139,26 +87,6 @@
         function closeMenu() {
             menu.classList.remove('openMenu');
         }
-
-        // C3.js
-        let chart = c3.generate({
-            bindto: '#chart', // HTML 元素綁定
-            data: {
-                type: "pie",
-                columns: [
-                    ['Louvre 雙人床架', 1],
-                    ['Antony 雙人床架', 2],
-                    ['Anty 雙人床架', 3],
-                    ['其他', 4],
-                ],
-                colors: {
-                    "Louvre 雙人床架": "#DACBFF",
-                    "Antony 雙人床架": "#9D7FEA",
-                    "Anty 雙人床架": "#5434A7",
-                    "其他": "#301E5F",
-                }
-            },
-        });
     </script>
 </body>
 
